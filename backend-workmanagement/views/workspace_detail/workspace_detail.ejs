@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workplace Detail</title>
+
+    <link rel="icon" type="image/x-icon" href="../../public/img/favicon.ico">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&family=Lora:ital,wght@1,400;1,500;1,600&family=Outfit:wght@200;400;500;700;800&family=Varela+Round&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../../public/css/workspace_detail/workspace_detail.css" type="text/css">
+    <link rel="stylesheet" href="../../public/css/base.css">
+    </link>
+</head>
+
+<body>
+    <div id="container" class="<%=data.id%>">
+        <div id="surface" class="surface">
+            <!--Header-->
+            <div class="header" style="min-height: 50px; max-height: 50px; overflow: hidden;">
+                <%- include('../component/topbar.ejs', {isLogin: true}) %>
+
+                <main id="popover-boundary" class="container-main">
+                    <div
+                        style="display: flex; flex-direction: row; flex: 1 1 0%; position: relative; overflow-y: auto;">
+
+                        <!--Content-->
+                        <div
+                            style="display: flex; flex-direction: column; flex: 1 1 0%; overflow-y: auto; padding-left: 16px; padding-right: 16px;">
+
+                            <div id="content" tabindex="-1">
+                                <div>
+                                    <!--        ----------------------header----------------------          -->
+                                    <div class="tabbed-pane-header">
+                                        <div class="tabbed-pane-header-wrapper u-clearfix">
+                                            <div class="tabbed-pane-header-content">
+                                                <div class="org-profile-avatar">
+                                                    <div>
+                                                        <div>
+                                                            <button id="img-btn" type="button" class="img-btn">
+                                                                <img src="/file/<%=data.thumbnail%>"
+                                                                    alt="workplace-thumbnail"
+                                                                    class="image-wp-thumbnail" />
+                                                            </button>
+
+                                                            <div class="update-logo" id="update-logo">
+                                                                <div id="close-update-logo-form" class="close"
+                                                                    style="cursor: pointer;">
+                                                                    <img src="../../public/img/boards/icon/close.svg"
+                                                                        alt="icon-close" />
+                                                                </div>
+                                                                <h3>Thay đổi Logo</h3>
+                                                                <form id="update-logo-form"
+                                                                    action="/workplace/updatethumbnail/<%=data._id%>"
+                                                                    enctype="multipart/form-data" method="POST">
+                                                                    <button class="btn-upload-logo" type="button"
+                                                                        style="margin-top: 5px;">
+                                                                        <label for="input-logo">Tải Logo</label>
+                                                                    </button>
+                                                                    <div style="height: 15px;"></div>
+                                                                    <input type="file" class="input-logo"
+                                                                        id="input-logo" name="logoWorkPlace"
+                                                                        style="display: none;" />
+                                                                    <image class="input-logo-image"
+                                                                        id="input-logo-image" src="#"
+                                                                        alt="table-background" style="display: none;" />
+                                                                    <div style="height: 20px;"></div>
+                                                                    <input type="text" name="workplaceId"
+                                                                        style="display: none;" value="<%=data._id %>" />
+                                                                    <button class="btn-update-logo-submit"
+                                                                        type="submit">Lưu</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tabbed-pane-header-details">
+                                                    <div class="workplace">
+                                                        <h1 class="workplace-h1"><%=data.workplaceName%></h1>
+                                                        <span class="icon-public-private">
+                                                            <span>
+                                                                <span role="img" aria-label="PrivateIcon">
+                                                                    <svg width="16" height="16" role="presentation"
+                                                                        focusable="false" viewBox="0 0 24 24"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <%
+                                                                                if (data.scope == "PUBLIC") { %>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M11 18.9291V18C11 17.4477 10.5523 17 10 17C9.44772 17 9 16.5523 9 16V15L5.06227 11.0623C5.0212 11.369 5 11.682 5 12C5 15.5265 7.60771 18.4439 11 18.9291ZM14.9929 5.67024C14.9065 6.69513 14.0472 7.5 13 7.5H11V9C11 9.55228 10.5523 10 10 10H8V12H13C14.1046 12 15 12.8954 15 14V16H16C16.5198 16 16.9469 16.3966 16.9954 16.9037C18.2353 15.6407 19 13.9097 19 12C19 9.20479 17.3617 6.79224 14.9929 5.67024ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                                                            fill="#0f0"></path>
+                                                                        <%  }
+                                                                            else{
+                                                                            %>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M5 11C5 9.89543 5.89543 9 7 9H8H10H14H16H17C18.1046 9 19 9.89543 19 11V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V11ZM10 11H14H16H17V19H7V11H8H10ZM14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z"
+                                                                            fill="#f00"></path>
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M10.3817 5.69846C10.0982 6.10344 10 6.63103 10 7V9H8V7C8 6.36897 8.15175 5.39656 8.74327 4.55154C9.37523 3.64874 10.4367 3 12 3C13.5633 3 14.6248 3.64874 15.2567 4.55154C15.8482 5.39656 16 6.36897 16 7V9H14V7C14 6.63103 13.9018 6.10344 13.6183 5.69846C13.3752 5.35126 12.9367 5 12 5C11.0633 5 10.6248 5.35126 10.3817 5.69846Z"
+                                                                            fill="#f00"></path>
+                                                                        <%  } %>
+                                                                    </svg>
+                                                                </span>
+                                                            </span>
+                                                            <%=data.scope%>
+                                                        </span>
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="workplace-description">
+                                                            <p><%=data.description%></p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <button id="btn-chinh-sua-khong-gian-lam-viec" type="button">
+                                                        <span class="nch-icon">
+                                                            <span class="sc-bdVaJa jKipYA" role="img"
+                                                                aria-label="EditIcon">
+                                                                <svg width="24" height="24" role="presentation"
+                                                                    focusable="false" viewBox="0 0 24 24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                        d="M7.82034 14.4893L9.94134 16.6103L18.4303 8.12131L16.3093 6.00031H16.3073L7.82034 14.4893ZM17.7233 4.58531L19.8443 6.70731C20.6253 7.48831 20.6253 8.7543 19.8443 9.53531L10.0873 19.2933L5.13734 14.3433L14.8943 4.58531C15.2853 4.19531 15.7973 4.00031 16.3093 4.00031C16.8203 4.00031 17.3323 4.19531 17.7233 4.58531ZM5.20094 20.4097C4.49794 20.5537 3.87694 19.9327 4.02094 19.2297L4.80094 15.4207L9.00994 19.6297L5.20094 20.4097Z"
+                                                                        fill="currentColor">
+                                                                    </path>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                        Chỉnh sửa chi tiết Không gian làm việc
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--        ----------------------action----------------------          -->
+                                    <div class="tabbed-pane-nav u-clearfix">
+                                        <div class="flex tabbed-pane-nav-actions">
+                                            <div class="flex workplace-action">
+                                                <a style="color: black;" href="#table" id="workplace-action-table"
+                                                    class="workplace-action-table" style="background-color: #fff;">
+                                                    <img src="../../public/img/boards/icon/tableV2.svg"
+                                                        alt="icon-table" />
+                                                    <span>Bảng</span>
+                                                </a>
+                                                <a style="color: black;" href="#member" id="workplace-action-member"
+                                                    class="workplace-action-member">
+                                                    <img src="../../public/img/boards/icon/member.svg"
+                                                        alt="icon-member" />
+                                                    <span>Thành viên</span>
+                                                </a>
+                                                <a style="color: black;" href="#setting" id="workplace-action-setting"
+                                                    class="workplace-action-setting">
+                                                    <img src="../../public/img/boards/icon/setting.svg"
+                                                        alt="icon-setting" />
+                                                    <span>Cài đặt</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!--        ----------------------My workplace----------------------          -->
+                                    <div class="flex tabbed-pane-main">
+                                        <div class="tabbed-pane-main-wrapper">
+                                            <div class="boards-my-workplace">
+                                                <div class="workplace-container">
+
+                                                    <!--        ----------------------My tables----------------------          -->
+                                                    <div id="workplace-container-table"
+                                                        class="flex workplace-container-table">
+                                                        <%
+                                                            data.tables.forEach((item, _index) => { %>
+                                                        <a href="/api/table/<%=item.id%>/columns" class="table-element"
+                                                            style="background-image: url('/file/<%=item.background%>');">
+                                                            <span class="table-element-fade"></span>
+                                                            <div class="flex table-element-detail"
+                                                                style="    flex-direction: column;">
+                                                                <div class="table-element-title">
+                                                                    <%=item.tableName%>
+                                                                </div>
+                                                                <div class="flex table-element-workplace"
+                                                                    style="justify-content: end;">
+                                                                    <div id="favorite-<%=item.id%>"
+                                                                        class="<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'favorite' :  'add-favorite' %>">
+                                                                        <img class="img-favorite"
+                                                                            src="../../public/img/boards/icon/<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'starFull.svg' :  'star.svg' %>"
+                                                                            alt="star" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <%   })
+                                                        %>
+
+                                                        <!--        ----------------------add tables----------------------          -->
+                                                        <div class="add-table">
+                                                            <div class="create-table">Tạo bảng mới</div>
+
+                                                            <div class="add-table-form" id="add-table-form">
+                                                                <div id="close-form" class="close">
+                                                                    <img src="../../public/img/boards/icon/close.svg"
+                                                                        alt="icon-close" />
+                                                                </div>
+                                                                <h3>Tạo bảng mới</h3>
+                                                                <form id="create-table-form" action="/api/table/create"
+                                                                    enctype="multipart/form-data" method="POST">
+                                                                    <input type="text" id="type" name="type"
+                                                                        value="workplace" style="display: none;" />
+                                                                    <label for="input-table-name">Tên bảng</label>
+                                                                    <input type="text" id="input-table-name"
+                                                                        name="tableName" />
+                                                                    <div style="height: 10px;"></div>
+                                                                    <label for="input-table-description">Mô tả
+                                                                        bảng</label>
+                                                                    <input type="text" id="input-table-description"
+                                                                        name="tableDescription" />
+                                                                    <div style="height: 10px;"></div>
+                                                                    <label for="input-table-max-member">Số thành
+                                                                        viên
+                                                                        tối đa</label>
+                                                                    <input type="number" id="input-table-max-member"
+                                                                        name="tableMaxMember" />
+                                                                    <div style="height: 20px;"></div>
+                                                                    <label>Ảnh nền</label>
+                                                                    <div style="height: 15px;"></div>
+                                                                    <button class="btn-upload" type="button">
+                                                                        <label for="input-table-background">Tải
+                                                                            ảnh nền</label>
+                                                                    </button>
+                                                                    <div style="height: 15px;"></div>
+                                                                    <input type="file" class="input-background"
+                                                                        id="input-table-background"
+                                                                        name="backgroundTable" style="display: none;" />
+                                                                    <image class="input-table-background-image"
+                                                                        id="input-table-background-image" src="#"
+                                                                        alt="table-background" style="display: none;" />
+                                                                    <div style="height: 20px;"></div>
+                                                                    <input type="text" name="workplaceId"
+                                                                        style="display: none;"
+                                                                        value="<%= data._id %>" />
+                                                                    <button class="btn-create-table" type="submit">Tạo
+                                                                        bảng</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--        ----------------------End My tables----------------------          -->
+
+
+                                                    <!--        ----------------------My setting workplace----------------------          -->
+                                                    <div id="setting-workplace-content">
+                                                        <div>
+                                                            <div>
+                                                                <div class="window-module u-clearfix">
+                                                                    <div class="window-module-title">
+                                                                        <h3 class="u-inline"><span>Khả năng hiển thị
+                                                                                trong Không gian làm việc</span></h3>
+                                                                    </div>
+                                                                    <div class="setting-item">
+                                                                        <div class="setting-item-detail">
+                                                                            <div>
+                                                                                <div>
+                                                                                    <p>
+                                                                                        <span>
+                                                                                            <span role="img"
+                                                                                                aria-label="PrivateIcon">
+                                                                                                <svg width="16"
+                                                                                                    height="16"
+                                                                                                    role="presentation"
+                                                                                                    focusable="false"
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <%
+                                                                                                                if (data.scope == "PUBLIC") { %>
+                                                                                                    <path
+                                                                                                        fill-rule="evenodd"
+                                                                                                        clip-rule="evenodd"
+                                                                                                        d="M11 18.9291V18C11 17.4477 10.5523 17 10 17C9.44772 17 9 16.5523 9 16V15L5.06227 11.0623C5.0212 11.369 5 11.682 5 12C5 15.5265 7.60771 18.4439 11 18.9291ZM14.9929 5.67024C14.9065 6.69513 14.0472 7.5 13 7.5H11V9C11 9.55228 10.5523 10 10 10H8V12H13C14.1046 12 15 12.8954 15 14V16H16C16.5198 16 16.9469 16.3966 16.9954 16.9037C18.2353 15.6407 19 13.9097 19 12C19 9.20479 17.3617 6.79224 14.9929 5.67024ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                                                                                        fill="#0f0">
+                                                                                                    </path>
+                                                                                                    <%  }
+                                                                                                            else{
+                                                                                                            %>
+                                                                                                    <path
+                                                                                                        fill-rule="evenodd"
+                                                                                                        clip-rule="evenodd"
+                                                                                                        d="M5 11C5 9.89543 5.89543 9 7 9H8H10H14H16H17C18.1046 9 19 9.89543 19 11V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V11ZM10 11H14H16H17V19H7V11H8H10ZM14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z"
+                                                                                                        fill="#f00">
+                                                                                                    </path>
+                                                                                                    <path
+                                                                                                        fill-rule="evenodd"
+                                                                                                        clip-rule="evenodd"
+                                                                                                        d="M10.3817 5.69846C10.0982 6.10344 10 6.63103 10 7V9H8V7C8 6.36897 8.15175 5.39656 8.74327 4.55154C9.37523 3.64874 10.4367 3 12 3C13.5633 3 14.6248 3.64874 15.2567 4.55154C15.8482 5.39656 16 6.36897 16 7V9H14V7C14 6.63103 13.9018 6.10344 13.6183 5.69846C13.3752 5.35126 12.9367 5 12 5C11.0633 5 10.6248 5.35126 10.3817 5.69846Z"
+                                                                                                        fill="#f00">
+                                                                                                    </path>
+                                                                                                    <%  } %>
+                                                                                                </svg>
+                                                                                            </span>
+                                                                                        </span>
+
+                                                                                        <strong>
+                                                                                            <%=data.scope%></strong>
+                                                                                        <%
+                                                                                            if (data.scope == "PUBLIC") { %>
+                                                                                        - Đây là Không gian làm việc
+                                                                                        công khai. Bất kỳ ai có đường
+                                                                                        dẫn tới Không gian làm việc đều
+                                                                                        có thể nhìn thấy Không gian làm
+                                                                                        việc và Không gian làm việc có
+                                                                                        thể được tìm thấy trên các công
+                                                                                        cụ tìm kiếm như Google. Chỉ
+                                                                                        những người được mời vào Không
+                                                                                        gian làm việc mới có thể thêm và
+                                                                                        chỉnh sửa các bảng của Không
+                                                                                        gian làm việc.
+                                                                                        <%  }
+                                                                                            else{%>
+                                                                                        - Đây là Không gian làm việc
+                                                                                        riêng tư. Chỉ những người trong
+                                                                                        Không gian làm việc có thể truy
+                                                                                        cập hoặc nhìn thấy Không gian
+                                                                                        làm việc.
+                                                                                        <%  } 
+                                                                                        %>
+                                                                                        </span>
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="setting-item-action">
+                                                                            <div id="btn-chang-scope"
+                                                                                class="button-link u-text-align-center">
+                                                                                <span>Thay đổi</span>
+                                                                            </div>
+
+                                                                            <div id="popup-change-scope"
+                                                                                class="popup-change-scope"
+                                                                                data-elevation="1"
+                                                                                style="left: calc(100% - 304px); top: calc(100% - 0px);">
+                                                                                <div class="no-back">
+                                                                                    <div
+                                                                                        class="pop-over-header js-pop-over-header">
+                                                                                        <span
+                                                                                            class="pop-over-header-title">Chọn
+                                                                                            khả năng hiển thị
+                                                                                        </span>
+
+                                                                                        <div id="close-popup-change-scope"
+                                                                                            class="close">
+                                                                                            <img src="../../public/img/boards/icon/close.svg"
+                                                                                                alt="icon-close">
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <div class="pop-over-content js-pop-over-content u-fancy-scrollbar js-tab-parent"
+                                                                                            style="max-height: 829px;">
+                                                                                            <div>
+                                                                                                <ul
+                                                                                                    class="pop-over-list">
+                                                                                                    <li>
+                                                                                                        <div id="select-private"
+                                                                                                            class="highlight-icon js-select-members">
+                                                                                                            <span>
+                                                                                                                <span
+                                                                                                                    role="img"
+                                                                                                                    aria-label="PrivateIcon">
+                                                                                                                    <svg width="16"
+                                                                                                                        height="16"
+                                                                                                                        role="presentation"
+                                                                                                                        focusable="false"
+                                                                                                                        viewBox="0 0 24 24"
+                                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                                        <path
+                                                                                                                            fill-rule="evenodd"
+                                                                                                                            clip-rule="evenodd"
+                                                                                                                            d="M5 11C5 9.89543 5.89543 9 7 9H8H10H14H16H17C18.1046 9 19 9.89543 19 11V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V11ZM10 11H14H16H17V19H7V11H8H10ZM14 15C14 16.1046 13.1046 17 12 17C10.8954 17 10 16.1046 10 15C10 13.8954 10.8954 13 12 13C13.1046 13 14 13.8954 14 15Z"
+                                                                                                                            fill="#f00">
+                                                                                                                        </path>
+                                                                                                                        <path
+                                                                                                                            fill-rule="evenodd"
+                                                                                                                            clip-rule="evenodd"
+                                                                                                                            d="M10.3817 5.69846C10.0982 6.10344 10 6.63103 10 7V9H8V7C8 6.36897 8.15175 5.39656 8.74327 4.55154C9.37523 3.64874 10.4367 3 12 3C13.5633 3 14.6248 3.64874 15.2567 4.55154C15.8482 5.39656 16 6.36897 16 7V9H14V7C14 6.63103 13.9018 6.10344 13.6183 5.69846C13.3752 5.35126 12.9367 5 12 5C11.0633 5 10.6248 5.35126 10.3817 5.69846Z"
+                                                                                                                            fill="#f00">
+                                                                                                                        </path>
+                                                                                                                    </svg>
+                                                                                                                </span>
+                                                                                                            </span>
+                                                                                                            Riêng
+                                                                                                            tư
+
+                                                                                                            <%
+                                                                                                                if (data.scope == "PRIVATE") { %>
+                                                                                                            <span>
+                                                                                                                <span
+                                                                                                                    role="img"
+                                                                                                                    aria-label="PrivateIcon">
+                                                                                                                    <svg width="16"
+                                                                                                                        height="16"
+                                                                                                                        role="presentation"
+                                                                                                                        focusable="false"
+                                                                                                                        viewBox="0 0 24 24"
+                                                                                                                        xmlns="http://www.w3.org/2000/svg">
+
+                                                                                                                        <line
+                                                                                                                            x1="0"
+                                                                                                                            y1="18"
+                                                                                                                            x2="8"
+                                                                                                                            y2="24"
+                                                                                                                            stroke="black"
+                                                                                                                            fill="none" />
+                                                                                                                        <line
+                                                                                                                            x1="8"
+                                                                                                                            y1="24"
+                                                                                                                            x2="16"
+                                                                                                                            y2="8"
+                                                                                                                            stroke="black"
+                                                                                                                            fill="none" />
+
+                                                                                                                    </svg>
+                                                                                                                </span>
+                                                                                                            </span>
+                                                                                                            <% } %>
+
+                                                                                                            <span
+                                                                                                                class="sub-name">
+                                                                                                                Đây là
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc
+                                                                                                                riêng
+                                                                                                                tư. Chỉ
+                                                                                                                những
+                                                                                                                người
+                                                                                                                trong
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc có
+                                                                                                                thể truy
+                                                                                                                cập hoặc
+                                                                                                                nhìn
+                                                                                                                thấy
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc.
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </li>
+
+                                                                                                    <li>
+                                                                                                        <div id="select-public"
+                                                                                                            class="highlight-icon js-select-public">
+                                                                                                            <span>
+                                                                                                                <span
+                                                                                                                    role="img"
+                                                                                                                    aria-label="PrivateIcon">
+                                                                                                                    <svg width="16"
+                                                                                                                        height="16"
+                                                                                                                        role="presentation"
+                                                                                                                        focusable="false"
+                                                                                                                        viewBox="0 0 24 24"
+                                                                                                                        xmlns="http://www.w3.org/2000/svg">
+
+                                                                                                                        <path
+                                                                                                                            fill-rule="evenodd"
+                                                                                                                            clip-rule="evenodd"
+                                                                                                                            d="M11 18.9291V18C11 17.4477 10.5523 17 10 17C9.44772 17 9 16.5523 9 16V15L5.06227 11.0623C5.0212 11.369 5 11.682 5 12C5 15.5265 7.60771 18.4439 11 18.9291ZM14.9929 5.67024C14.9065 6.69513 14.0472 7.5 13 7.5H11V9C11 9.55228 10.5523 10 10 10H8V12H13C14.1046 12 15 12.8954 15 14V16H16C16.5198 16 16.9469 16.3966 16.9954 16.9037C18.2353 15.6407 19 13.9097 19 12C19 9.20479 17.3617 6.79224 14.9929 5.67024ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                                                                                                            fill="#0f0">
+                                                                                                                        </path>
+                                                                                                                    </svg>
+                                                                                                                </span>
+                                                                                                            </span>
+
+                                                                                                            Công khai
+
+                                                                                                            <%
+                                                                                                                if (data.scope == "PUBLIC") { %>
+                                                                                                            <span>
+                                                                                                                <span
+                                                                                                                    role="img"
+                                                                                                                    aria-label="PrivateIcon">
+                                                                                                                    <svg width="16"
+                                                                                                                        height="16"
+                                                                                                                        role="presentation"
+                                                                                                                        focusable="false"
+                                                                                                                        viewBox="0 0 24 24"
+                                                                                                                        xmlns="http://www.w3.org/2000/svg">
+
+                                                                                                                        <line
+                                                                                                                            x1="0"
+                                                                                                                            y1="18"
+                                                                                                                            x2="8"
+                                                                                                                            y2="24"
+                                                                                                                            stroke="black"
+                                                                                                                            fill="none" />
+                                                                                                                        <line
+                                                                                                                            x1="8"
+                                                                                                                            y1="24"
+                                                                                                                            x2="16"
+                                                                                                                            y2="8"
+                                                                                                                            stroke="black"
+                                                                                                                            fill="none" />
+
+                                                                                                                    </svg>
+                                                                                                                </span>
+                                                                                                            </span>
+                                                                                                            <% } %>
+                                                                                                            <span
+                                                                                                                class="sub-name">
+                                                                                                                Đây là
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc
+                                                                                                                công
+                                                                                                                khai.
+                                                                                                                Bất kỳ
+                                                                                                                ai có
+                                                                                                                đường
+                                                                                                                dẫn tới
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc đều
+                                                                                                                có thể
+                                                                                                                nhìn
+                                                                                                                thấy
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc và
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc có
+                                                                                                                thể được
+                                                                                                                tìm thấy
+                                                                                                                trên các
+                                                                                                                công cụ
+                                                                                                                tìm kiếm
+                                                                                                                như
+                                                                                                                Google.
+                                                                                                                Chỉ
+                                                                                                                những
+                                                                                                                người
+                                                                                                                được mời
+                                                                                                                vào
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc mới
+                                                                                                                có thể
+                                                                                                                thêm và
+                                                                                                                chỉnh
+                                                                                                                sửa các
+                                                                                                                bảng của
+                                                                                                                Không
+                                                                                                                gian làm
+                                                                                                                việc.
+                                                                                                            </span>
+                                                                                                        </div>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="js-react-root">
+                                                                <div class="js-react-root">
+                                                                    <div class="_3DdUxqvSzSG8p0">
+                                                                        <button id="btn-remove-workplace"
+                                                                            class="_1vnCcs3IT2OLf5 _3TTqkG5muwOzqZ _1RPBq-YNVksXzg _1Tu9wiuW4Te8Rx"
+                                                                            data-test-id="delete-workspace-button"
+                                                                            type="button"
+                                                                            style="margin: 0px 4px 0px 20px;">
+                                                                            Xóa Không gian làm việc này?
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--        ----------------------End setting workplace----------------------          -->
+
+
+                                                    <!--        ----------------------My members workplace----------------------          -->
+                                                    <div class="org-members-page-layout">
+                                                        <div class="org-members-page-layout-list">
+                                                            <div>
+                                                                <div class="org-members-section active">
+                                                                    <div class="org-members-actions-container">
+                                                                        <div class="org-members-actions-header">
+                                                                            <h1><span>Các thành viên Không gian làm
+                                                                                    việc</span><span>&nbsp;</span><span
+                                                                                    class="team-member-count">(1)</span>
+                                                                            </h1>
+                                                                            <p><span>Các thành viên trong Không gian làm
+                                                                                    việc có thể xem và tham gia tất cả
+                                                                                    các bảng Không gian làm việc hiển
+                                                                                    thị và tạo ra các bảng mới trong
+                                                                                    Không gian làm việc.</span></p>
+                                                                        </div>
+                                                                        <div class="org-members-actions">
+                                                                            <div class="org-members-actions-search">
+                                                                                <input type="text"
+                                                                                    placeholder="Lọc theo tên"
+                                                                                    class="org-members-page-navigation-input"
+                                                                                    value=""></div>
+                                                                            <div class="org-members-actions-add"><a
+                                                                                    class="primary button-link autowrap"
+                                                                                    href="#"><span
+                                                                                        class="icon-sm icon-add-member"></span><span>&nbsp;</span><span>Mời
+                                                                                        các thành viên Không gian làm
+                                                                                        việc</span></a></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="org-members-section">
+                                                                    <div class="org-members-empty-container"><img
+                                                                            class="org-members-guest-illustration"
+                                                                            alt="Các bảng chia sẻ với bạn bè"
+                                                                            src="https://a.trellocdn.com/prgb/dist/images/organization/guests.9f6e43073b1d76e08c4b.svg">
+                                                                        <div class="org-members-empty-content">
+                                                                            <h1 class="org-members-heading"><span>Các
+                                                                                    bảng chia sẻ với bạn bè</span></h1>
+                                                                            <p class="org-members-subheading"><span>Nếu
+                                                                                    khách hàng, nhà thầu hoặc bạn bè
+                                                                                    được thêm vào bảng Không gian làm
+                                                                                    việc thì họ sẽ xuất hiện ở
+                                                                                    đây.</span></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="_1uE7ZPW8Qk7bmV"
+                                                                data-test-id="org-members-list">
+                                                                <div class="member-list-item-detail">
+                                                                    <div class="member member-no-menu"><img height="30"
+                                                                            width="30"
+                                                                            src="https://trello-members.s3.amazonaws.com/616d81f36f7d8541e0b125e6/64d2a2f7e578fe26350c87255a352885/30.png"
+                                                                            srcset="https://trello-members.s3.amazonaws.com/616d81f36f7d8541e0b125e6/64d2a2f7e578fe26350c87255a352885/30.png 1x, https://trello-members.s3.amazonaws.com/616d81f36f7d8541e0b125e6/64d2a2f7e578fe26350c87255a352885/50.png 2x"
+                                                                            class="member-avatar"><span
+                                                                            title="Thành viên này là quản trị viên của Không gian làm việc này."
+                                                                            class="member-type admin"></span><span
+                                                                            title="Thành viên này đang dùng Trello Gold."
+                                                                            class="member-gold-badge"></span></div>
+                                                                    <div class="details">
+                                                                        <p class="name-line"><span
+                                                                                class="full-name">Hoàng Nguyễn
+                                                                                Thế</span></p>
+                                                                        <p class="u-bottom quiet"><span
+                                                                                class="quiet u-inline-block"><span>@hoangnguynth8</span></span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="options"><a class="option quiet-button"
+                                                                            href="#"><span>Trên 1 bảng</span></a>
+                                                                        <div class="js-react-root">
+                                                                            <div class="_2hWqmjXGDb1FxZ"><button
+                                                                                    data-test-id="org-member-restricted-permission"
+                                                                                    class="_1oWyw480oH9DGq">Quản trị
+                                                                                    viên<span><span
+                                                                                            class="nch-icon _3W-26fmi3tFfon j0fswhntKdStWa"><span
+                                                                                                class="sc-bdVaJa dWodlR"
+                                                                                                role="img"
+                                                                                                aria-label="HelpIcon"><svg
+                                                                                                    width="24"
+                                                                                                    height="24"
+                                                                                                    role="presentation"
+                                                                                                    focusable="false"
+                                                                                                    viewBox="0 0 24 24"
+                                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path
+                                                                                                        fill-rule="evenodd"
+                                                                                                        clip-rule="evenodd"
+                                                                                                        d="M2 12C2 6.47667 6.47667 2 12 2C17.5233 2 22 6.47667 22 12C22 17.5233 17.5233 22 12 22C6.47667 22 2 17.5233 2 12ZM4 12C4 16.4188 7.58124 20 12 20C16.4188 20 20 16.4188 20 12C20 7.58124 16.4188 4 12 4C7.58124 4 4 7.58124 4 12ZM8 10C7.99999 7.48383 10.3214 5.51108 12.9389 6.10713C14.3829 6.43513 15.5569 7.60513 15.8899 9.04813C16.3809 11.1771 15.1719 13.0911 13.3589 13.7471C13.1549 13.8201 13.0099 14.0021 13.0099 14.2191V14.0001C13.0099 14.5521 12.5629 15.0001 12.0099 15.0001C11.4579 15.0001 11.0099 14.5521 11.0099 14.0001V12.9871C11.0179 12.4411 11.4599 12.0001 11.9999 12.0001C13.1029 12.0001 13.9999 11.1021 13.9999 10.0001C13.9999 8.89713 13.1029 8.00013 11.9999 8.00013C10.8959 8.00013 9.99935 8.92313 10.0004 10.0271C9.98522 10.5666 9.54291 11 9 11C8.47773 11 8.04856 10.599 8.00385 10.0882C8.00385 10.0882 8 10.0297 8 10ZM12 18C11.448 18 11 17.552 11 17C11 16.448 11.448 16 12 16C12.552 16 13 16.448 13 17C13 17.552 12.552 18 12 18Z"
+                                                                                                        fill="currentColor">
+                                                                                                    </path>
+                                                                                                </svg></span></span></span></button>
+                                                                            </div>
+                                                                        </div><a disabled=""
+                                                                            class="option button-link remove-button disabled"
+                                                                            href="#"><span
+                                                                                class="icon-sm icon-close"></span><span>&nbsp;</span><span>Rời
+                                                                                đi</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--        ----------------------End members workplace----------------------          -->
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--        ----------------------End My workplace----------------------          -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+
+                <div id="footer">
+                </div>
+            </div>
+        </div>
+
+
+        <!--        ----------------------Update workplace----------------------          -->
+        <div id="create-workplace-modal">
+            <span class="fade"></span>
+
+            <div id="create-workplace-container">
+                <div class="create-workplace-main">
+                    <div id="close-modal" class="close">
+                        <img src="../../public/img/boards/icon/close.svg" alt="icon-close" />
+                    </div>
+                    <div class="flex create-workplace-body" style="margin-left: 20px;">
+                        <div class="flex create-workplace-body-left">
+                            <div class="create-workplace-info">
+                                <div class="create-workplace-title">
+                                    <div class="title-header">
+                                        Chỉnh sửa không gian làm việc
+                                    </div>
+                                </div>
+                                <div style="height: 20px;"></div>
+                                <div class="create-workplace-form">
+                                    <form action="/workplace/update/<%=data._id%>" method="post">
+                                        <label for="input-workplace-name">
+                                            Tên không gian làm việc
+                                        </label>
+                                        <div style="height: 10px;"></div>
+                                        <input type="text" id="input-workplace-name" name="workplaceName"
+                                            value="<%=data.workplaceName%>" />
+                                        <div style="height: 10px;"></div>
+                                        <label for="input-workplace-type">
+                                            Loại công việc
+                                        </label>
+                                        <div style="height: 10px;"></div>
+                                        <input type="text" id="input-workplace-category" name="category"
+                                            value="<%=data.category%>" />
+                                        <div style="height: 10px;"></div>
+                                        <label for="input-workplace-description">
+                                            Mô tả không gian làm việc
+                                        </label>
+                                        <div style="height: 10px;"></div>
+                                        <textarea id="input-workplace-description"
+                                            name="description"><%=data.description%></textarea>
+                                        <button id="btn-create-modal-info" class="btn-create-modal"
+                                            type="submit">Lưu</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--        ----------------------JS----------------------          -->
+        <script src="../../public/js/workspace_detail.js"></script>
+</body>
+
+</html>

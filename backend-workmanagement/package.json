@@ -1,0 +1,43 @@
+{
+  "name": "backend-workmanagement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "ejs-lint": "^1.2.1",
+    "express": "^4.17.1",
+    "google-auth-library": "^7.10.2",
+    "jsonwebtoken": "^8.5.1",
+    "localStorage": "^1.0.4",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.13",
+    "mongoose-sequence": "^5.3.1",
+    "multer": "^1.4.4",
+    "multer-gridfs-storage": "^5.0.2",
+    "nodemailer": "^6.7.1",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/soict-it4409/20211/nhom09/backend-workmanagement.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/soict-it4409/20211/nhom09/backend-workmanagement/issues"
+  },
+  "homepage": "https://gitlab.com/soict-it4409/20211/nhom09/backend-workmanagement#readme"
+}

@@ -1,0 +1,25 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "nhom9",
+    "email": "hoang.lv1322@gmail.com",
+    "password": "1234567"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "hoang.lv1322@gmail.com",
+    "password": "1234567"
+
+###
+PUT http://localhost:5000/api/table/deleteMembers/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MWFmN2NjMTMyZjEyOGQ0MTZhNDg5Y2QiLCJpYXQiOjE2Mzk5NjMzOTB9.zdMzdxzxHE-Zl0rvzkvEk7pXW_6Rr8LshjcKtMoQYlw
+Content-Type: application/json
+
+{
+    "members":"61bb25e015c3ceae60d16c37"
+}

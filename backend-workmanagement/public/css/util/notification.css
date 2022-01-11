@@ -1,0 +1,42 @@
+@keyframes upTodown {
+    0% {top: 0;}
+    25% {top: 25px;}
+    50% {top: 40px;}
+    75% {top: 50px}
+    100% {top: 55px}
+  }
+  #notification {
+    display: none;
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    z-index: 9999;
+    background-color: #fff;
+    border-radius: 20px;
+    font-size: 22px;
+    animation: upTodown .5s 1;
+    animation-timing-function: linear;
+  }
+  .fail{
+  color: #D75A4A;
+  }
+  .success {
+    color: #25AE88;
+  }
+  .fail, .success {
+    display: none;
+    position: relative;
+  }
+  .fail > img, .success > img {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+  }
+  .fail > span, .success > span {
+    position: absolute;
+    top: 13px;
+    left: 55px;
+  }
+  

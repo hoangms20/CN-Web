@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+#header {
+    height: 60px;
+    width: 100%;
+}
+/*---------------------nav--------------------------*/
+.nav{
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 60px;
+   width: 100%;
+   background-color:#026AA7;
+   z-index: 999;
+}
+.left-nav{
+    display: flex;
+    align-items: center;
+}
+
+.left-nav img{
+    height: 50px;
+    width: 50px;
+    margin: 0 8px;
+}
+
+.left-nav h1{
+    font-family:'Outfit';
+    font-weight: 700;
+    font-size:30px;
+}
+
+.right-nav{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.right-nav .search{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid #ccc; */
+    position: relative;
+    border-radius: 5px;
+}
+
+.right-nav .search i{
+    font-size:15px;
+    margin-left: 8px;
+    position: absolute;
+    right: 8px;
+}
+
+.right-nav i{
+    font-size:20px;
+    cursor: pointer;
+}
+
+.right-nav .search input{
+    border: none ;
+    outline: none;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.avatar{
+    cursor: pointer;
+}
+
+.avatar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/*-------------setting user-------------*/
+.setting-user{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 300px;
+    padding:16px;
+    height:400px;
+    background-color: rgb(224, 211, 211);
+    border-radius:10px;
+    display: none;
+    z-index: 9999;
+}
+
+.setting-user p{
+    text-align: center;
+    font-size:15px;
+    margin-bottom: 8px;
+}
+
+.setting-user .account{
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid rgb(94, 88, 88);
+    border-bottom: 1px solid rgb(90, 82, 82);
+}
+
+.setting-user-active{
+    display: block;
+}
+
+.setting-user .infor{
+    margin-left: 16px;
+}
+
+.setting-user .infor h5{
+    font-size:20px;
+    font-weight:bold;
+    font-family: 'Outfit';
+}
+
+.setting-user a{
+    position: absolute;
+    bottom:16px;
+    left:30%;
+}
+
+.right-nav a, .left-hero a, .setting-user a{
+    padding:10px;
+    width: 100px;
+    background-color: rgb(59, 61, 192);
+    border-radius:5px;
+    font-weight: 500;
+    font-family: 'Outfit';
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0 16px;
+}
+
+.right-nav a:hover{
+    background-color:rgb(79, 11, 238);
+}

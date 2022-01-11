@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WorkPlace | Login</title>
+		<link rel="stylesheet" href="../../public/css/auth/login.css" />
+		<link
+			rel="icon"
+			href="../../public/img/favicon.ico"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&family=Lora:ital,wght@1,400;1,500;1,600&family=Outfit:wght@100;200;400;600;700;800&family=Poppins:ital,wght@0,500;0,600;0,700;1,100;1,500;1,600;1,700&family=Varela+Round&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="auth-container">
+			<div class="auth-body">
+			  <div class="auth-body-left"></div>
+			  <div class="auth-body-right" id="register" style="display: block;">
+				<div class="register-container">
+					<div class="title fl-center">
+						<image src="../../public/img/auth/favico.svg" alt="logo" />
+						<span>Work Management</span>
+					  </div>
+					 <div class="register-title" style="font-size: 20px; color: black; margin-bottom: 30px; margin-top: 20px;">
+						 Đăng ký tài khoản của bạn
+					 </div>
+					 <div class="register-form">
+						<form id="register-form" autocomplete="off" action="/api/auth/register"  method="POST">
+							<div class="input-typing register-input">
+								<image
+									class="input-icon"
+									src="../../public/img/auth/username.svg"
+									alt="text"
+									style="top: 10px; left: 14px;"
+								/>
+								<input autocomplete="off" name="username" type="text" placeholder="username" />
+							</div>
+							<div class="input-typing register-input">
+								<image
+									class="input-icon"
+									src="../../public/img/auth/email.svg"
+									alt="email"
+									style="top: 13px; left: 14px"
+								/>
+								<input autocomplete="off" name="email" type="email" placeholder="example@gmail.com" />
+							</div>
+							<div class="input-typing register-input">
+								<image
+									class="input-icon"
+									src="../../public/img/auth/password.svg"
+									alt="password"
+									style="top: 7px; left: 10px"
+								/>
+								<input
+									id="pw1-register"
+									autocomplete="off"
+									name="password"
+									class="input-password"
+									type="password"
+									placeholder="&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;"
+									required
+								/>
+							</div>
+							<div class="input-typing register-input">
+								<image
+									class="input-icon"
+									src="../../public/img/auth/password.svg"
+									alt="password"
+									style="top: 7px; left: 10px"
+								/>
+								<input
+									autocomplete="off"
+									id="pw2-register"
+									name="passwordConfirm"
+									class="input-password"
+									type="password"
+									placeholder="&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;&#8270;"
+									required
+								/>
+							</div>
+							<div class="show-password">
+								<input type="checkbox" id="show-password"/>
+								<span>Hiển thị mật khẩu</span>
+							</div>
+							<input type="submit" value="Register" style="margin-top: 60px;"/>
+						</form>
+					 </div>
+				</div>
+				<div class="policy">
+					<a href="#">Privacy Policy</a>
+					<span>|</span>
+					<a href="#">Terms of Service</a>
+				  </div>
+			  </div>
+			</div>
+		  </div>  
+		  <%- include('../util/notification.ejs') %>
+		  <script src="../../public/js/auth.js"></script>		
+	</body>
+</html>

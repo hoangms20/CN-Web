@@ -1,0 +1,608 @@
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: #5f5f5f;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+background: #d0d0d0; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #888; 
+border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+::-webkit-scrollbar-track-piece {
+    background: #091e4214;
+}
+#root-container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    width: 100%;
+    min-height: 100%;
+}
+.nav {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    position: absolute !important;
+
+}
+.container-app{
+    /* margin-top: 45px; */
+    /* background-image: url('https://img.freepik.com/free-photo/beautiful-emerald-lake-yoho-national-park-british-columbia-canada_131985-177.jpg?size=626&ext=jpg'); */
+    /* background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%; */
+    /* min-height: 95vh; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: auto;
+}
+
+.header-container{
+    margin-top: 45px;
+    display: flex;
+    align-items: center;
+    /* background-color: #0000003d; */
+    padding: 15px 16px;
+}
+
+.header-container .link {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px 6px 12px;
+    background-color: transparent;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 8px;
+    font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+
+.header-container .link a {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.tableName a{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.table-container{
+    display: flex;
+    flex-wrap: nowrap;
+    padding-left: 32px;
+}
+
+
+/* -------------------column--------------- */
+.column {
+    display: flex;
+    padding: 10px 10px 15px 10px;
+    min-width: 270px;
+    max-width: 270px;
+    max-height: 480px;
+    height: fit-content;
+    background: #ebecf0;
+    border-radius: 5px;
+    flex-direction: column;
+    margin:16px;
+    position: relative;
+}
+
+
+.column-title {
+    margin: 0px 7px;
+    margin-bottom: 5px;
+    font-size: 19px;
+    color: #374866;
+    padding: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ebecf0;
+    border-radius: 3px;
+    font-weight:600;
+    border: none;
+    /* box-shadow: 0 1px 0 #091e4240; */
+}
+.column-title:hover {
+    background-color: #d1d1d1 !important;
+}
+.btn-add{
+    cursor: pointer;
+}
+.add-column {
+    background-color: #ffffff3d;
+    /* height: 65px; */
+    padding: 10px 15px;
+    color: black;
+}
+.btn-add-column {
+    background-color: #dfdfdf3d;
+    border: none;
+    color: black;
+}
+.btn-add-column:hover {
+    background-color: #e7e7e73d !important;
+}
+.item-input {
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 16px;
+    font-size:16px;
+    font-weight:500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: text;
+    min-height: 45px;
+    max-height: 120px;
+}
+.tag-description {
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+    font-size: 14px;
+    color: #6e6e6e;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* white-space: nowrap; */
+    max-height: calc(100% - 60px);
+}
+.tag-name {
+    max-height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+} 
+.dropzone {
+    height: 10px;
+    transition: background 0.15s, height 0.15s;
+}
+
+.dropzone--active {
+    height: 20px;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.add-item {
+    width: 100px !important;
+    padding: 5px 0 !important;
+    height: 32px !important;
+    font-size: 16px;
+    color: rgb(241, 231, 231);
+    background: #0079bf;
+    border: none;
+    border-radius: 6px !important;
+    cursor: pointer;
+}
+
+.form-add{
+    display: none;
+}
+
+.form-add input,
+.model-invite input {
+    width: 100%;
+    margin-bottom: 8px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    outline:none;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    display: block;
+    transition: margin 85ms ease-in,
+    background 85ms ease-in;
+    width: 100%;
+}
+
+.form-add-active{
+    display: block;
+}
+
+.form-add i{
+    font-size: 25px;
+    margin-left: 16px;
+    cursor: pointer;
+    float: right;
+    margin-top: 8px;
+}
+
+.btn-close-item{
+    position: absolute;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    right: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    top: 12px;
+}
+
+.btn-close-item i{
+    cursor: pointer;
+}
+
+.item-input:hover .btn-close-item{
+    display: inline;
+}
+
+.model-invite{
+    position: absolute;
+    width: 20%;
+    height:250px;
+    top: 98px;
+    left:35%;
+    padding:16px;
+    background-color:#ffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    display: none;
+}
+
+.model-invite h5{
+    text-align: center;
+    font-size:15px;
+}
+
+.model-invite input{
+    margin: 16px 0;
+}
+
+.model-invite .description{
+    width: 100%;
+    font-size:15px;
+    color: rgb(182, 206, 200);
+    margin-bottom: 32px;
+}
+
+.model-invite #close-model{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    outline: none;
+    border:none;
+    background-color: transparent;
+}
+
+.model-invite #close-model i{
+    font-size:20px;
+    cursor: pointer;
+}
+
+.model-invite-active {
+    display: block;
+}
+.dragging {
+    opacity: 0.5;
+}
+.columns {
+    min-height: 10px;
+    max-width: 450px;
+    padding: 0 5px;
+    overflow-y: auto;
+}
+/* --------------table setting ---------------------*/
+.table-setting, .column-setting{
+    position: absolute;
+    top: 48px;
+    left: 8px;
+    width: 23%;
+    min-height:40%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffff;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius:10px;
+    padding: 16px;
+    display: none ;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.table-setting {
+    top: 95px !important;
+}
+.table-setting h2{
+    text-align: center;
+    font-weight: 500;
+    margin: 8px;
+    color: rgb(80, 152, 165);
+}
+
+.table-setting hr{
+    width: 100%;
+    color: rgb(137, 202, 202);
+}
+
+.option-table-setting{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.option-table-setting > a {
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    margin: 4px 4px 4px 0;
+    cursor: pointer;
+    font-weight:500;
+    color: #374866;
+}
+
+
+.option-table-setting > a:hover{
+    background-color: #b2b1ab;
+    color: #ffff;
+    border-radius: 5px;
+}
+
+.form-update-table{
+    padding-left: 32px;
+    width: 100%;
+    display:none;
+}
+
+.form-update-table input{
+    width: 90%;
+    outline: none;
+    border: 1px solid rgb(110, 142, 179);
+}
+
+.form-update-table button{
+    padding:8px;
+    width:30%;
+    margin-right: 50%;
+}
+
+.form-update-table i{
+    font-size: 20px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.list-member-table{
+    width: 100%;
+    padding-left:24px;
+    display:none;
+}
+   
+.option-table-setting .list-member-table .item-input{
+    width: 90%;
+    border: 1px solid rgb(115, 153, 189);
+}
+
+.option-table-setting-active{
+    display: block;
+}
+
+.list-member-table .items .item-input i{
+    font-size: 25px;
+    margin-top: 8px;
+}
+
+.delete-table-setting{
+    width: 100%;
+    padding:12px 8px;
+    margin-top: 16px;
+}
+
+.delete-table-setting:hover{
+   background-color: #b2b1ab;
+   border-radius: 5px;
+}
+
+.btn-delete-table{
+    display: block;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight:500;
+    color: #374866;
+}
+
+/* ---------setting column------------------- */
+.btn-column-setting{
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.column-setting{
+    width: 300px;
+    z-index: 4;
+    top: 0 !important;
+    left: 280px;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+.column-setting .add-item{
+    font-size:12px;
+}
+
+/* ---------------model card----------------------------- */
+.items{
+    position: relative;
+    background-color:#fff;
+    box-shadow: 0 1px 0 #091e4240;
+    border-radius: 5px;
+    
+}
+
+.model-card{
+    position: absolute;
+    width: 300px;
+    max-height: 500px;
+    background-color: #f4f5f7;
+    right: -320px;
+    top: -1px;
+    z-index: 6;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-radius:10px;
+    display: none;
+}
+
+.model-card form{
+    padding:16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.model-card .card-option{
+    display: flex;
+    flex-direction: column;
+}
+
+.model-card .card-option label{
+    font-size:16px;
+    font-weight:500;
+    color:#374866;
+    margin: 8px 0 ;
+}
+
+.model-card .card-option .input{
+    padding:8px;
+    border: none;
+    border-radius:5px;
+    background-color:#eaecf0;
+    outline: none;
+    font-size:16px;
+    width:100%;
+}
+
+.model-card .card-option .input::placeholder{
+     font-size:15px;
+     font-weight:600;
+     color:#58729e;
+}
+
+.model-card .card-option .input:focus{
+    border: 2px solid rgb(92, 102, 199);
+    background-color:#ffff;
+}
+
+.model-card .card-option .textarea{
+    min-height:70px;
+}
+
+.model-card .btn-update-card{
+    margin-top: 16px;
+    font-size:16px;
+    border: none;
+    outline: none;
+    background-color: rgb(153, 201, 40);
+    padding: 8px;
+    width: 50%;
+    margin-left: 25%;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.model-card-active{
+    display: block !important;
+}
+
+.label-tag {
+    width: 50px;
+    height: 8px;
+    border-radius: 10px;
+    border: none;
+    margin: 2px 0px;
+}
+
+/* notify */
+@keyframes upTodown {
+    0% {top: 0;}
+    25% {top: 25px;}
+    50% {top: 40px;}
+    75% {top: 50px}
+    100% {top: 55px}
+}
+#notification {
+    display: none;
+    width: 280px;
+    height: 50px;
+    position: absolute;
+    top: 55px;
+    right: 15px;
+    z-index: 9999;
+    background-color: #fff;
+    border-radius: 20px;
+    font-size: 22px;
+    animation: upTodown .5s 1;
+    animation-timing-function: linear;
+}
+.fail{
+ color: #D75A4A;
+}
+.success {
+    color: #25AE88;
+}
+.fail, .success {
+    display: none;
+    position: relative;
+}
+.fail > img, .success > img {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+}
+.fail > span, .success > span {
+    position: absolute;
+    top: 13px;
+    left: 55px;
+}
+
+#save-table {
+    width: 80px;
+    border: none;
+    background-color: #0079bf;
+    color: white;
+    height: 32px;
+    margin: 0 8px;
+    font-family: 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    white-space: nowrap;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+}

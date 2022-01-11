@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<base href="/" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="../../public/css/pages/table.css"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&family=Lora:ital,wght@1,400;1,500;1,600&family=Outfit:wght@200;400;500;700;800&family=Varela+Round&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/x-icon" href="../../public/img/favicon.ico">
+		<title>Table</title>
+	</head>
+	<body style="background-image: url('/file/<%=table.background%>');">
+		<%- include('../component/topbar', {isLogin, user}) %>
+		<div class="container-app" >
+			<div class="header-container">
+				<div class="link tableName" style="background-color: transparent !important;">
+					<a>
+						<%- table.tableName  %> 
+					</a>
+				</div>
+				<div class="link">
+					<a id ="table-setting-open">
+						Bảng
+						<i class="fas fa-caret-down"></i>
+					</a>
+				</div>
+				<div class="link">
+					<a href="/api/table/admin">
+						Không gian làm việc của <%- user.username %>
+						<i class="fas fa-caret-down"></i>
+					</a>
+				</div>
+				<div class="link">
+					<a href="/api/table/admin">
+						<i class="fas fa-globe-africa"></i>
+						<%- table.scope %> 
+					</a>
+				</div>
+				<div class="link" id="inviteMember">
+					<a> <i class="fas fa-user-plus"></i>Mời</a>
+				</div>
+				<div>
+					<button id="save-table" type="button">Lưu</button>
+				</div>
+			</div>
+			<div style="display: flex;">
+				<div class="table-container">
+					<% columns && columns.forEach(function(column, index) { %>
+					<div class="column" draggable="true">
+						<div class="column-title">
+							<%- column.columnName %>
+						</div>
+						<div class="columns" id="column-<%=column.id%>">
+							<% column.tags.forEach(function(tag, _index) { %>
+								<div class="items card card-<%=index%> tag-id-<%=tag.id%>" id="card-<%=index%>-<%=_index%>">
+									<div class="item-input" draggable="true" style="cursor: pointer;">
+										 <span class="tag-name"><%- tag.tagName %> </span>
+										 <div style="background-color: <%= tag.label  %>" class="label-tag">
+	
+										 </div>
+										 <form action="/api/column/deleteCard/<%- column._id %>/<%- table._id %>?_method=PUT" method="POST">
+												<input type="text" name="tags" value="<%- tag._id %>" style="display: none" autocomplete="off">
+											 <button class="btn-close-item" type="submit">
+												 <i class="fas fa-times"></i>
+											 </button>
+										 </form>
+										 <div class="tag-description">
+											 <%=tag.description%>
+										 </div>
+									</div>
+								</div>
+								<div class="model-card model-card-<%=index%>" id="model-card-<%=index%>-<%=_index%>" style="position: absolute;">
+									<div >
+										<div style="width: 100%; position: relative;">
+											<img 
+												src="../../public/img/boards/icon/close.svg"
+												alt="close" 
+												class="icon-close-model-<%=index%>"
+												style="position: absolute; right: 15px; top: 10px; cursor: pointer;"
+											/>
+										</div>
+										<form action="/api/tag/update/<%- tag._id %>/<%- table._id %>?_method=PUT" method="POST">
+											<div class="card-option">
+												<label>Tên thẻ</label>
+												<input class="input" type="text" name="tagName" value="<%- tag.tagName %> "/>
+											</div>
+											<div class="card-option">
+												<label >Thành viên thực hiện</label>
+												  <select class="input" name="participant"> 
+													<option selected><%- tag.participant ? tag.participant : "Chọn thành viên thực hiện"%></option>
+													<option value="<%- table.admin.username %> "><%- table.admin.username %></option>
+													<% table.members && table.members.forEach(function(member, index){ %>
+															<option value="<%- member.username %> "><%- member.username %></option>
+													<% }) %> 
+												</select>
+											</div>
+		
+											<div class="card-option">
+												<label>Mô tả chi tiết cho thẻ</label>
+												<textarea class="input textarea" type="text" name="description" placeholder="Thêm mô tả cho thẻ..." ><%=tag.description%></textarea>
+											</div>
+		
+											<div class="card-option">
+												<label >Deadline</label>
+												  <input autocomplete="off" class="input" type="date" name="deadline"  value="<%- tag.deadline ? tag.deadline : "2022-01-01"  %>">
+											</div>
+		
+											<div class="card-option">
+												<label >Tiến độ</label>
+												  <select class="input" name="label"> 
+													<option selected>Chọn nhãn dán cho thẻ</option>
+													<option value="rgb(238, 245, 245)">Chuẩn bị công nghệ</option>
+													<option value="rgb(20, 173, 173)">Đang làm </option>
+													<option value="rgb(226, 216, 128)">Cần kiểm tra</option>
+													<option value="rgb(241, 117, 86)">Cần bổ sung</option>
+													<option value="rgb(53, 243, 53)">Đã hoàn thành</option>
+												</select>
+											</div>
+											<button type="submit" class="btn-update-card">Cập nhật thẻ</button>
+										</form>
+									</div>
+								</div>
+							<%}) %>
+						</div>
+						<button class="column-title btn-add" style="color: #5e6c84; text-align: start; background-color: #e2e2e2;">
+							+	Thêm thẻ
+						</button>
+						<form class="form-add " action="/api/tag/create/<%- column._id %>/<%- table._id %>" method="POST" >
+							<input autocomplete="off" name="tagName" class="item-input" placeholder="Nhập tiêu đề cho thẻ..."></input>
+							<button class="add-item" type="submit">+ Add</button>
+							<i class="fas fa-times btn-close"></i>
+						</form>
+						<button class="btn-column-setting"><i class="fas fa-ellipsis-v"></i></button>
+						<div class="column-setting">	
+							<div class="option-table-setting" style="margin-bottom: 5px;">
+								<a class="btn-update-table">
+									Thay đổi tên cột <i class="fas fa-caret-down" style="margin-left: 8px;"></i>
+								</a>
+								<form class="form-update-table " action="/api/column/update/<%- column._id %>/<%- table._id %>?_method=PUT" method="POST" >
+									<input autocomplete="off" style="margin-bottom: 10px !important; font-size: 15px; cursor: text;" name="columnName" class="item-input" placeholder="Nhập tiêu đề mới cho cột"></input>
+									<button class="add-item" type="submit">Update</button>
+								</form>
+							</div>
+							<hr />
+							<div class="delete-table-setting" style="margin-top: 5px;">
+									<form action="/api/column/delete/<%- column._id %>/<%- table._id %>?_method=DELETE" method="POST">
+										<button class="btn-delete-table" type="submit">
+												Xóa cột <i class="far fa-trash-alt"></i>
+										</button>
+									</form>
+							</div>
+						</div>
+					</div>
+					<%}) %>
+				</div>
+				<div class="column add-column" id="add-column" >
+					<span class="column-title btn-add btn-add-column" id="btn-add-column">
+						+	Thêm danh sách
+					</span>
+					<form class="form-add " action="/api/column/create/<%- table._id %>" method="post">
+						<input autocomplete="off" name="columnName" class="item-input" placeholder="Nhập tiêu đề cho danh sách..."></input>
+						<button class="add-item" type="submit">+	Add</button>
+						<i class="fas fa-times btn-close" style="color: #252525;"></i>
+					</form>
+				</div>
+				<div class="model-invite" id="model-invite">
+					<h5>Mời vào bảng</h5>
+					<form action="/api/table/update/<%- table._id %>?_method=PUT" method="POST">
+						<input autocomplete="off" name="email" placeholder="Nhập địa chỉ email..."></input>
+						<div class="description">
+							<p>Bất kì ai nếu có tài khoản thì cũng có thể tham gia là thành viên của bảng.</p>
+						</div>
+						<button class="add-item" type="submit">+ Add</button>
+					</form>
+					<button id="close-model"><i class="fas fa-times "></i></button>
+				</div>
+	
+				<div class="table-setting" id="table-setting">
+					<h2><%- table.tableName %> </h2>
+					<hr />
+					<div class="option-table-setting">
+						<a class="btn-update-table">
+							Thay đổi tên bảng <i class="fas fa-caret-down" style="margin-left: 8px;"></i>
+						</a>
+						<form class="form-update-table " id="u-table" action="/api/table/update/<%- table._id %>?_method=PUT" method="POST" >
+							<input autocomplete="off" name="tableName" class="item-input" value="<%=table.tableName%>" placeholder="Nhập tiêu đề mới cho bảng..."></input>
+							<button class="add-item" type="submit">Update</button>
+							<i class="fas fa-times btn-close u-table"></i>
+						</form>
+					</div>
+					<div class="option-table-setting">
+						<a class="btn-update-table">
+							Thêm mô tả cho bảng<i class="fas fa-caret-down"  style="margin-left: 8px;"></i>
+						</a>
+						<form class="form-update-table " id="u-description" action="/api/table/update/<%- table._id %>?_method=PUT" method="POST" >
+							<input autocomplete="off" name="description" class="item-input" placeholder="Mô tả" value="<%=table.description%>"></input>
+							<button class="add-item" type="submit">Update</button>
+							<i class="fas fa-times btn-close u-description"></i>
+						</form>
+					</div>
+					<div class="option-table-setting">
+						<a class="btn-update-table">
+							Thay đổi ảnh nền <i class="fas fa-caret-down"  style="margin-left: 8px;"></i>
+						</a>
+						<form class="form-update-table " id="u-background" enctype="multipart/form-data" action="/api/table/update/<%- table._id %>?_method=PUT" method="POST" >
+							<input class="item-input" type="file" name="tableBackground"></input>
+							<button class="add-item" type="submit">Update</button>
+							<i class="fas fa-times btn-close u-background"></i>
+						</form>
+					</div>
+					<div class="option-table-setting">
+						<a class="btn-update-table">
+							Thành viên của bảng <i class="fas fa-caret-down"  style="margin-left: 8px;"></i>
+						</a>
+						<div class="list-member-table">
+							<div class="item-input">
+								Quản trị viên: <%- table.admin.username %> <%- table.admin.email %> 
+							</div>
+							<% table.members.forEach(function(member, index) { %>
+							<div class="items">
+								<div  class="item-input">
+									 Thành viên: <%- member.username %>  <%- member.email %> 
+									 <% if(user.email === table.admin.email){ %>
+										<form action="/api/table/deleteMembers/<%- table._id %>?_method=PUT" method="POST">
+											   <input autocomplete="off" type="text" name="members" value="<%- member._id %>" style="display: none">
+											<button class="btn-close-item" type="submit">
+												 <i class="far fa-trash-alt"></i>
+											</button>
+										</form>
+									<% } %>  
+								</div>
+							</div>
+							<%}) %>
+						</div>
+					</div>
+					<hr />
+					<div class="delete-table-setting">
+						<% if(user.email === table.admin.email){ %>
+							<form action="/api/table/delete/<%- table._id %>?_method=DELETE" method="POST">
+								<button class="btn-delete-table" type="submit">
+										Xóa bảng <i class="far fa-trash-alt"></i>
+								</button>
+							</form>
+						<% } %>  
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		<div id="notification">
+			<div class="success">
+				<img src="../../public/img/table/notify-success.svg" alt="success" />
+				<span>Cập nhật thành công</span>
+			</div>
+			<div class="fail">
+				<img src="../../public/img/table/notify-error.svg" alt="error" />
+				<span>Cập nhật thất bại</span>
+			</div>
+		</div>
+		<script type="module" src="../../public/js/table.js"></script>
+	</body>
+</html>

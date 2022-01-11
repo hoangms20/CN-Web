@@ -1,0 +1,188 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.setting-user {
+    top: 15px !important;
+    z-index: 9999 !important;
+}
+
+.profile-container{
+    margin-top: 45px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    background-color:#f4f5f7;
+    position: relative;
+}
+.avatar-setting {
+    position: relative;
+}
+.img-avatar{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+#lable-camera > img {
+    max-width: 20px;
+    max-height: 20px;
+    cursor: pointer;
+}
+#lable-camera {
+    position: absolute;
+    bottom: -5px;
+    left: 60px;
+}
+.user-title{
+    display: flex;
+    flex-direction: column;
+    margin-left: 36px;
+}
+
+.user-title a{
+     color:#172b4d;
+     font-weight: 600;
+     font-size:18px;
+}
+
+.title-setting{
+    position: absolute;
+    bottom: 0;
+    left: 43%;
+    width: 15%;
+    text-align: center;
+    height: 40px;
+    background-color: #ffff;
+    padding:16px;
+}
+
+.title-setting > h1{
+    font-size: 16px;
+    color: rgb(11, 72, 80);
+    font-weight:500;
+}
+
+.profile-body{
+    margin:auto;
+    width: 527px;
+    margin-top: 48px;
+}
+
+.profile-body > img{
+    margin-bottom: 48px;
+}
+
+.profile-body > h2{
+    font-size: 24px;
+    color:#172b4d;
+    font-family: 'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.profile-body .profile-provicy {
+    padding: 16px;
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(18, 124, 110, 0.692);
+    background-color:#f4f5f7;
+    width:100%;
+    margin-bottom: 48px;
+}
+
+.infor-user{
+    padding-bottom: 48px;
+}
+
+.input-infor{
+    width:80%;
+    margin: 16px 0;
+}
+
+.input-infor .input-header{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    font-size: 15px;
+    font-family: 'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+    margin-bottom: 8px;
+}
+
+.input-infor .input-header span{
+    font-weight: 500;
+    color: rgb(9, 71, 73);
+}
+
+.input-infor .input-header a{
+    font-size:12px;
+    color:rgb(70, 162, 190);
+}
+
+.input-infor .input-header a i{
+    margin-right: 8px;
+}
+
+.input-infor .input{
+   padding:8px;
+   border: 2px solid #ccc;
+   border-radius:5px;
+   background-color:#fafbfc;
+   outline: none;
+   font-size:16px;
+   width:100%;
+}
+
+.infor-user .input:focus {
+    border: 2px solid rgb(92, 102, 199);
+    background-color: #ffff;
+}
+
+.infor-user .btn-update-user{
+    width: 80%;
+    padding: 8px;
+    background-color: rgb(69, 91, 219);
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.input-infor > sapn{
+    font-size: 15px;
+    margin-top: 8px;
+    color: rgb(224, 64, 64);
+    font-family: 'Segoe UI',
+     Tahoma,
+     Geneva,
+     Verdana,
+     sans-serif;
+}

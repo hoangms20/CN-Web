@@ -1,0 +1,27 @@
+const GENDER = {
+	MALE: 'Nam',
+	FEMALE: 'Nữ',
+	OTHERS: 'Khác',
+}
+
+const SCOPE_WORKPLACE = {
+	PUBLIC: 'PUBLIC',
+	PRIVATE: 'PRIVATE',
+}
+
+const SCOPE_TABLE = {
+	PUBLIC: 'PUBLIC',
+	PRIVATE: 'PRIVATE',
+}
+
+const ROLE_ACCOUNT = {
+	ADMIN: 1,
+	USER: 2,
+}
+
+module.exports = {
+	GENDER,
+	SCOPE_WORKPLACE,
+	SCOPE_TABLE,
+	ROLE_ACCOUNT,
+}

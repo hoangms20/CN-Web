@@ -1,0 +1,386 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+}
+
+
+/*---------------------nav--------------------------*/
+.nav{
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   height: 50px;
+   width: 100%;
+   background-color:#026AA7;
+   z-index: 999;
+}
+
+/* -----------------left nav--------------- */
+
+.left-nav{
+    display: flex;
+    align-items: center;
+}
+
+.left-nav img{
+    height: 40px;
+    width: 40px;
+    margin: 0 8px;
+}
+#logo {
+    cursor: pointer;
+}
+.left-nav .logo .logo-img{
+    width: 31px;
+    height: 31px;
+}
+
+.left-nav .logo{
+    display: flex;
+    align-items: center;
+}
+
+.left-nav .logo .logo-title{
+   font-size: 25px;
+    color:#ffff;
+}
+
+.left-nav .link{
+    display: flex;
+    align-items: center;
+    padding: 6px 10px 6px 12px;
+    background-color: transparent;
+    height: 32px;
+    line-height: 32px;
+    margin: 0 8px;
+    font-family: 'Segoe UI','Roboto','Noto Sans','Ubuntu','Droid Sans','Helvetica Neue',sans-serif;
+    white-space: nowrap;
+    font-size:14px;
+}
+
+.left-nav .link-new{
+    background-color: rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+}
+
+.left-nav .link:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.left-nav .link a{
+    text-decoration: none;
+    color: #ffff;
+}
+
+/*-----------------right nav-------------- */
+
+.left-nav h1{
+    font-family:'Outfit';
+    font-weight: 700;
+    font-size:30px;
+}
+
+.right-nav{
+    display: flex;
+    align-items: center;
+    width: 30%;
+    justify-content: space-around;
+    margin-left: 20px;
+}
+
+.right-nav .search{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid #ccc; */
+    position: relative;
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.right-nav .search i{
+    font-size:15px;
+    position: absolute;
+    left: 8px;
+    color: #fff;
+}
+
+.right-nav > i{
+    width:20px;
+    height:20px;
+    color:rgb(241, 229, 229);
+    cursor: pointer;
+}
+
+.right-nav .search input{
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 250px;
+    padding: 8px 8px 8px 32px;
+    font-size: 14px;
+    height: 32px;
+    line-height: 19px;
+    border-radius: 3px;
+    color: rgba(255, 255, 255,0.8);
+    box-shadow: none;
+}
+
+.right-nav .search input::placeholder{
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.avatar{
+    cursor: pointer;
+}
+
+.avatar img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ----------------create table------------------- */
+
+.model-create-new {
+    position: absolute;
+    width: 20%;
+    height: 300px;
+    top: 56px;
+    left: 42%;
+    padding: 16px;
+    background-color: #ffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    z-index: 5;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+
+.model-create-new input {
+    width: 100%;
+    margin-bottom: 8px;
+    border: none;
+    padding: 10px;
+    font-size: 15px;
+    outline: none;
+    box-shadow: inset 0 0 0 2px #0079bf;
+    display: block;
+    transition: margin 85ms ease-in,
+        background 85ms ease-in;
+    width: 100%;
+    margin: 16px 0;
+}
+
+
+.model-create-new .description {
+    width: 100%;
+    font-size: 15px;
+    color: rgb(182, 206, 200);
+    margin-bottom: 32px;
+}
+
+.model-create-new #close-model-create {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.model-create-new #close-model-create i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.model-create-new-active{
+    display: block;
+}
+
+.add-item {
+    width: 60%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: rgb(241, 231, 231);
+    background: #0079bf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/*-------------setting user-------------*/
+.setting-user{
+    position: absolute;
+    top: 55px;
+    right: 10px;
+    width: 300px;
+    padding:16px;
+    padding-bottom: 20px;
+    height:460px;
+    background-color: #ffff;
+    border-radius:10px;
+    display: none;
+    z-index: 5;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.setting-user p{
+    text-align: center;
+    font-size:15px;
+    margin-bottom: 8px;
+}
+
+.setting-user .account{
+    display: flex;
+    align-items: center;
+    padding: 16px 0;
+    border-top: 1px solid rgb(94, 88, 88);
+    border-bottom: 1px solid rgb(90, 82, 82);
+}
+
+.setting-user-active{
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-user .infor{
+    margin-left: 16px;
+}
+
+.setting-user .infor h5{
+    font-size:16px;
+    font-weight: 400;
+}
+
+.setting-user .infor p{
+    font-size:12px;
+    color: rgb(123, 196, 186);
+}
+
+.setting-user .option-setting{
+    padding: 8px;
+}
+
+.setting-user .option-setting:hover{
+    background-color:rgb(179, 170, 170,0.3);
+    border-radius:5px;
+}
+
+.setting-user .option-setting a{
+    text-decoration: none;
+    font-size: 15px;
+    color: rgb(74, 80, 80);
+}
+
+.setting-user > a{
+    position: absolute;
+    bottom:10px;
+    left: 89px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #015FB6;
+    border-radius:5px;
+    padding:4px 16px;
+}
+
+.right-nav a {
+    padding:8px;
+    width: 150px;
+    background-color: #015FB6;
+    border-radius:5px;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin: 0 16px;
+}
+
+.right-nav a:hover{
+    background-color: #037cec;
+}
+
+
+/*---------------------container------------------------------*/
+
+.container{
+    margin-top: 45px;
+    min-height: 100vh;
+}
+
+
+/*-------------------section hero------------------*/
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+}
+.left-hero{
+    display: flex;
+    height: 767px;
+    flex-direction: column;
+    align-items: center;
+    margin:0 10%;
+}
+
+.left-hero a{
+    width: 80%;
+    margin-top: 32px;
+}
+
+.title{
+    font-family: 'Outfit';
+    margin-top: 30%;
+    font-size:25px;
+}
+.desc{
+    font-family: 'Outfit';
+    font-size: 16px;
+}
+
+.right-hero{
+    margin-right:10%;
+    padding:10px;
+}
+.left-hero a {
+    padding:8px;
+    width: 80%;
+    background-color: #015FB6;
+    border-radius:5px;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    margin-top: 20px;
+}
+.right-hero img{
+    display: block;
+    height:100%;
+    width:100%;
+}

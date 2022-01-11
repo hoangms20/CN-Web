@@ -1,0 +1,9 @@
+.space-vertical-50 {
+    height: 50px !important;
+    width: 100% !important;
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+};
+

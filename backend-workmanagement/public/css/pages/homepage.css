@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.nav {
+    background-color: white !important;
+}
+.slider {
+    position: relative;
+    background: #000116;
+    width: 100%;
+    min-height: 500px;
+    margin-top:50px;
+    overflow: hidden;
+}
+
+.logo > h1 {
+    color: #015FB6 !important;
+}
+.slider .slide-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    clip-path: circle(0% at 0 50%);
+}
+
+.slider .slide-item.active {
+    clip-path: circle(150% at 50% 50%);
+    transition: 2.5s linear;
+}
+
+.slider .slide-item img {
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    object-fit: contain;
+    left: 50%;
+    top:5%;
+}
+
+.slider .slide-item .infor {
+    position: absolute;
+    padding: 1rem;
+    top: 30%;
+    left: 5%;
+    width: 40%;
+    height:40%;
+    border: 1 solid #ccc;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-family:'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+    border-radius: 10px;
+}
+.infor {
+    height: 300px !important;
+    max-height: 300px !important;
+    top: 100px !important;
+}
+.slider .slide-item .infor h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 45px;
+    margin-bottom: 10px;
+}
+
+.slider .slide .info p {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.slider .navigation {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: calc(50% - 2em);
+    opacity: 0;
+    transition: 3s linear;
+}
+
+.slider:hover .navigation {
+    opacity: 0.8;
+}
+
+.prev-btn,
+.next-btn {
+    z-index: 999;
+    font-size: 2em;
+    color: #222;
+    background: rgba(168, 162, 162, 0.8);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.next-btn {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.navigation-visibility {
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.navigation-visibility .slide-icon {
+    z-index: 999;
+    background: rgba(88, 75, 75, 0.5);
+    width: 20px;
+    height: 10px;
+    transform: translateY(-20px);
+    margin: 0 6px;
+    border-radius: 2px;
+    box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+}
+
+.navigation-visibility .slide-icon.active {
+    background: #4285F4;
+}

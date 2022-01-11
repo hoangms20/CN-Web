@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Boards</title>
+    <link rel="stylesheet" href="../../public/css/base.css"></link>
+    <link rel="stylesheet" href="../../public/css/boards/boards.css"></link>
+    <link rel="icon" type="image/x-icon" href="../../public/img/favicon.ico">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&family=Lora:ital,wght@1,400;1,500;1,600&family=Outfit:wght@200;400;500;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include('../component/topbar.ejs', {isLogin: true}) %> 
+    <div class="space-vertical-50"></div>
+    <div class="flex boards-container">
+        <div class="boards-left">
+            <ul class="list-action">
+                <li class="active">
+                    <a href="#">
+                        <img src="../../public/img/boards/icon/table.svg" alt="table-icon"/>
+                        <span>Bảng</span>
+                    </a>
+                </li>
+                <li >
+                    <a href="#">
+                        <img src="../../public/img/boards/icon/quick-note.svg" alt="table-icon"/>
+                        <span>Ghi chú nhanh</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../../public/img/boards/icon/date.svg" alt="table-icon"/>
+                        <span>Lịch</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="workplace-list">
+                <div class="flex add-workplace">
+                    <span>Các không gian làm việc</span>
+                    <img id="add-workplace-icon" src="../../public/img/boards/icon/add.svg" alt="add-icon" />
+                </div>
+                <ul>
+                    <%
+                        data.owner.forEach((item, index) => { %>
+                            <li class="workplace-element <%=item.workplaceName%>" id="<%=item.id%>">
+                                <div class="workplace-name">
+                                    <div>
+                                        <img src="/file/<%=item.thumbnail%>" alt="workplace-thumb"/>
+                                        <a href="#"><%=item.workplaceName%></a>
+                                    </div>
+                                    <img class="action-down" src="../../public/img/boards/icon/down.svg" alt="icon-down" />
+                                </div>
+                                <div id="list-actions-left-<%=index%>" class="workplace-element-action">
+                                    <a href="/workplace/<%=item.id%>" class="workplace-element-action-table">
+                                        <img src="../../public/img/boards/icon/tableV2.svg" alt="icon-table" />
+                                        <span>Bảng</span>
+                                    </a>
+                                    <a href="#" class="workplace-element-action-member">
+                                        <img src="../../public/img/boards/icon/member.svg" alt="icon-member" />
+                                        <span>Thành viên</span>
+                                    </a>
+                                    <a href="#" class="workplace-element-action-setting">
+                                        <img src="../../public/img/boards/icon/setting.svg" alt="icon-setting" />
+                                        <span>Cài đặt</span>
+                                    </a>
+                                    <a href="#" class="workplace-element-action-setting" id="delete-workplace-<%=index%>">
+                                        <img src="../../public/img/boards/icon/delete.svg" alt="icon-setting" style="left: 9px;"/>
+                                        <span>Xóa</span>
+                                    </a>
+                                </div>
+                            </li>
+                    <%    })
+                    %>
+                </ul>
+            </div>
+        </div>
+        <div class="boards-right">
+            <!--         ----------------------Favorite table----------------------         -->
+            <%
+                if (data.favorite.length > 0) { %>
+                    <div class="boards-favorite-table">
+                        <div class="boards-favorite-table-label">
+                            <img src="../../public/img/boards/icon/starGray.svg" alt="icon-star-favorite" />
+                            <span>Bảng đánh dấu sao</span>
+                        </div>
+                        <div class="flex boards-favorite-table-container">
+                            <%
+                                data.favorite.forEach((item, index) => { %>
+                                    <a
+                                        href="/api/table/<%=item.table.id%>/columns"
+                                        class="table-element"
+                                        style="background-image: url('/file/<%=item.table.background%>');"
+                                    >
+                                        <span class="table-element-fade"></span>
+                                        <div class="flex table-element-detail">
+                                            <div class="table-element-title">
+                                                <%=item.table.tableName%>
+                                            </div>
+                                            <div class="flex table-element-workplace">
+                                                <!-- <img src="../../public/img/boards/icon/starFull.svg" alt="star-full" /> -->
+                                                <div class="favorite" id="favorite-<%=item.table.id%>">
+                                                    <img class="img-favorite" src="../../public/img/boards/icon/starFull.svg" alt="star" />
+                                                </div>
+                                                <div><%=item.workplaceName%></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                            <%   })
+                            %>
+                        </div>
+                    </div>
+            <%    }
+            %>
+            
+            <!--        ----------------------Recently table----------------------          -->
+            <%
+                if (data.recently.length > 0) { %>
+                    <div class="boards-recently-table">
+                        <div class="boards-recently-table-label">
+                            <img src="../../public/img/boards/icon/clock.svg" alt="icon-clock" />
+                            <span>Đã xem gần đây</span>
+                        </div>
+                        <div class="flex boards-recently-table-container">
+                            <%
+                                data.recently.forEach((item, index) => { %>
+                                    <a
+                                        href="/api/table/<%=item.table.id%>/columns"
+                                        class="table-element"
+                                        style="background-image: url('/file/<%=item.table.background%>');"
+                                    >
+                                        <span class="table-element-fade"></span>
+                                        <div class="flex table-element-detail">
+                                            <div class="table-element-title">
+                                                <%=item.table.tableName%>
+                                            </div>
+                                            <div class="flex table-element-workplace">
+                                                <div
+                                                    id="favorite-<%=item.table.id%>"
+                                                    class="<%= user.favoriteTables.indexOf(item.table.id) !== -1 ? 'favorite' :  'add-favorite' %> recently-favorite"    
+                                                >
+                                                    <img
+                                                        class="img-favorite"
+                                                        src="../../public/img/boards/icon/<%= user.favoriteTables.indexOf(item.table.id) !== -1 ? 'starFull.svg' :  'star.svg' %>"
+                                                        alt="star"
+                                                    />
+                                                </div>
+                                                <% if(user.favoriteTables.indexOf(item.table.id) !== -1) {%>
+                                                    <div><%=item.workplaceName%></div>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </a>
+                            <%   })
+                            %>
+                        </div>
+                    </div>
+            <%   }
+            %>
+            <!--        ----------------------My workplace----------------------          -->
+            <%
+                if (data.owner.length > 0) { %>
+                    <div class="boards-my-workplace">
+                        <div class="boards-workplace-label">
+                            <span>Các không gian làm việc của bạn</span>
+                        </div>
+                        <div class="workplace-container">
+                            <%
+                                data.owner.forEach((element, index) => { %>
+                                    <div class="flex workplace-container-header">
+                                        <div class="flex workplace-title">
+                                            <img src="/file/<%=element.thumbnail%>" alt="workplace-thumbnail" />
+                                            <div><%=element.workplaceName%></div>
+                                        </div>
+                                        <div class="flex workplace-action">
+                                            <a style="color: black;" href="/workplace/<%=element.id%>" class="workplace-action-table">
+                                                <img src="../../public/img/boards/icon/tableV2.svg" alt="icon-table" />
+                                                <span>Bảng</span>
+                                            </a>
+                                            <a style="color: black;" href="/workplace/<%=element.id%>/#member" class="workplace-action-member">
+                                                <img src="../../public/img/boards/icon/member.svg" alt="icon-member" />
+                                                <span>Thành viên</span>
+                                            </a>
+                                            <a style="color: black;" href="/workplace/<%=element.id%>/#setting" class="workplace-action-setting">
+                                                <img src="../../public/img/boards/icon/setting.svg" alt="icon-setting" />
+                                                <span>Cài đặt</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="flex workplace-container-table">
+                                        <%
+                                            element.tables.forEach((item, _index) => { %>
+                                                <a href="/api/table/<%=item.id%>/columns" class="table-element"
+                                                    style="background-image: url('/file/<%=item.background%>');"
+                                                >
+                                                    <span class="table-element-fade"></span>
+                                                    <div class="flex table-element-detail">
+                                                        <div class="table-element-title">
+                                                            <%=item.tableName%>
+                                                        </div>
+                                                        <div class="flex table-element-workplace">
+                                                            <!-- <img src="../../public/img/boards/icon/starFull.svg" alt="star-full" /> -->
+                                                            <div
+                                                                id="favorite-<%=item.id%>"
+                                                                class="<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'favorite' :  'add-favorite' %>"    
+                                                            >
+                                                                <img
+                                                                    class="img-favorite"
+                                                                    src="../../public/img/boards/icon/<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'starFull.svg' :  'star.svg' %>"
+                                                                    alt="star"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                        <%   })
+                                        %>
+                                        <div class="add-table">
+                                            <div class="create-table" id="create-table-<%=index%>">Tạo bảng mới</div>
+                                            <div class="add-table-form" id="add-table-form-<%=index%>">
+                                                <div id="close-form" class="close">
+                                                    <img src="../../public/img/boards/icon/close.svg" alt="icon-close" />
+                                                </div>
+                                                <h3>Tạo bảng mới</h3>
+                                                <form id="create-table-form" action="/api/table/create" enctype="multipart/form-data" method="POST">
+                                                    <label for="input-table-name">Tên bảng</label>
+                                                    <input type="text" id="input-table-name" name="tableName"/>
+                                                    <div style="height: 10px;"></div>
+                                                    <label for="input-table-description">Mô tả bảng</label>
+                                                    <input type="text" id="input-table-description" name="tableDescription"/>
+                                                    <div style="height: 10px;"></div>
+                                                    <label for="input-table-max-member">Số thành viên tối đa</label>
+                                                    <input type="number" id="input-table-max-member" name="tableMaxMember"/>
+                                                    <div style="height: 20px;"></div>
+                                                    <label>Ảnh nền</label>
+                                                    <div style="height: 15px;"></div>
+                                                    <button class="btn-upload" type="button">
+                                                        <label for="input-table-background-<%=index%>">Tải ảnh nền</label>
+                                                    </button>
+                                                    <div style="height: 15px;"></div>
+                                                    <input type="file" class="input-background" id="input-table-background-<%=index%>" name="backgroundTable" style="display: none;"/>
+                                                    <image class="input-table-background-image" id="input-table-background-image-<%=index%>" src="#" alt="table-background" />
+                                                    <div style="height: 20px;"></div>
+                                                    <input type="text" name="workplaceId" style="display: none;" value="<%= element._id %>"/>
+                                                    <button class="btn-create-table" type="submit">Tạo bảng</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% })
+                            %>
+                        </div>
+                    </div>
+             <% } %>
+            <!--        ----------------------Guest workplace----------------------          -->
+        <%
+            if (data.guest.length > 0) { %>
+                <div class="boards-guest-workplace">
+                    <div class="boards-workplace-label">
+                        <span>Các không gian làm việc với tư cách thành viên</span>
+                    </div>
+                    <div class="workplace-container">
+                        <%
+                            data.guest.forEach((element, index) => { %>
+                            <div class="flex workplace-container-header">
+                                <div class="flex workplace-title">
+                                    <img src="/file/<%=element.thumbnail%>" alt="workplace-thumbnail" />
+                                    <div>
+                                        <%=element.workplaceName%> <% if(element.tables.length <= 0) {%> <span style="font-size: 14px;">(Không gian chưa có bảng nào)</span> <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex workplace-container-table">
+                            <%
+                                element.tables.forEach(item => { %>
+                                    
+                                        <a
+                                            href="/api/table/<%=item.id%>/columns"
+                                            class="table-element"
+                                            style="background-image: url('/file/<%=item.background%>'); "
+                                        >
+                                            <span class="table-element-fade"></span>
+                                            <div class="flex table-element-detail">
+                                                <div class="table-element-title">
+                                                    <%=item.tableName%>
+                                                </div>
+                                                <div class="flex table-element-workplace">
+                                                    <!-- <img src="../../public/img/boards/icon/starFull.svg" alt="star-full" /> -->
+                                                    <div
+                                                        id="favorite-<%=item.id%>"
+                                                        class="<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'favorite' :  'add-favorite' %>"    
+                                                    >
+                                                        <img
+                                                            class="img-favorite"
+                                                            src="../../public/img/boards/icon/<%= user.favoriteTables.indexOf(item.id) !== -1 ? 'starFull.svg' :  'star.svg' %>"
+                                                            alt="star"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                            <%  }) %>
+                            </div>
+                        <% })  
+                        %>
+                    </div>
+                </div>
+        <% } %>
+        </div>
+    </div>
+    <div id="create-workplace-modal">
+        <span class="fade"></span>
+        <div id="create-workplace-container">
+            <div class="create-workplace-main">
+                <div id="close-modal" class="close">
+                    <img src="../../public/img/boards/icon/close.svg" alt="icon-close" />
+                </div>
+                <div class="flex create-workplace-body">
+                    <div class="flex create-workplace-body-left">
+                        <div class="create-workplace-info">
+                            <div class="create-workplace-title">
+                                <div class="title-header">
+                                    Hãy xây dựng một không gian làm việc
+                                </div>
+                                <div class="sub-title-header">
+                                    Tăng năng suất của bạn bằng cách giúp mọi người dễ dàng truy cập bảng ở một vị trí
+                                </div>
+                            </div>
+                            <div style="height: 20px;"></div>
+                            <div class="create-workplace-form">
+                                <form>
+                                    <label for="input-workplace-name">
+                                        Tên không gian làm việc
+                                    </label>
+                                    <div style="height: 10px;"></div>
+                                    <input type="text" id="input-workplace-name" placeholder="Your workplace name"/>
+                                    <div style="height: 10px;"></div>
+                                    <label for="input-workplace-type">
+                                        Loại công việc
+                                    </label>
+                                    <div style="height: 10px;"></div>
+                                    <input type="text" id="input-workplace-category" placeholder="Your workplace type"/>
+                                    <div style="height: 10px;"></div>
+                                    <label for="input-workplace-description">
+                                        Mô tả không gian làm việc
+                                    </label>
+                                    <div style="height: 10px;"></div>
+                                    <textarea id="input-workplace-description"></textarea>
+                                    <button id="btn-create-modal-info" class="btn-create-modal" type="button">Tiếp tục</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="flex create-modal-add-members">
+                            <div class="create-workplace-title" style="margin-top: 40px;">
+                                <div>
+                                    <img id="back" src="../../public/img/back-icon.svg" alt="icon-back" style="height: 20px; cursor: pointer; margin-bottom: 10px;"/>
+                                </div>
+                                <div class="title-header">
+                                    Mời nhóm của bạn
+                                </div>
+                                <div class="sub-title-header">
+                                    Workplace khiến cho việc làm nhóm trở nên đơn giản và linh hoạt. Hãy mời các thành viên trong nhóm của bạn cùng tham gia !
+                                </div>
+                            </div>
+                            <div style="height: 20px;"></div>
+                            <div class="input-add-members">
+                                <form id="form-workplace" action="/workplace/create" method="POST">
+                                    <label for="input-add-members">Các thành viên trong không gian làm việc</label>
+                                    <div style="height: 10px;"></div>
+                                    <input name="members" type="text" id="input-add-members" placeholder='user hoặc email cách nhau bằng dấu ";"'/>
+                                    <button class="btn-create-modal" type="submit" >Mời vào không gian làm việc</button>
+                                </form>
+                            </div>
+                            <div class="add-members-after">Tôi sẽ thực hiện sau</div>
+                        </div>
+                    </div>
+                    <div id="btn-add-members" class="create-workplace-body-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../public/js/boards.js" ></script>
+</body>
+</html>

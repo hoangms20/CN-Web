@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../../public/css/pages/workPlace.css"></link>
+		<link rel="stylesheet" href="../../public/css/home/index.css" type="text/css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;700&family=Lora:ital,wght@1,400;1,500;1,600&family=Outfit:wght@200;400;500;700;800&family=Varela+Round&display=swap" rel="stylesheet">
+		<title>Work Place</title>
+	</head>
+	<body>
+		<%- include('../component/topbar', {isLogin, user}) %> 
+		<div class="container">
+			<% if(tables) { %>
+				<% tables.forEach(function(table, index) { %>
+					<div class="table-card">
+						<div class="table-title"><%- table.tableName %></div>
+						<a href="/api/table/<%- table._id %>/columns ">
+							<img src="https://img.freepik.com/free-photo/beautiful-emerald-lake-yoho-national-park-british-columbia-canada_131985-177.jpg?size=626&ext=jpg" alt="thumbnail">
+						</a>
+					</div>
+				<%}) %> 
+			<%} %> 	
+		</div>
+		<script src="../../public/js/index.js" type="text/javascript"></script>
+	</body>
+</html>

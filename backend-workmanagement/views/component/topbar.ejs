@@ -1,0 +1,154 @@
+<div class="nav">
+	<link
+		rel="stylesheet"
+		type="text/css"
+		href="../../public/css/home/index.css"
+	/>
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+		crossorigin="anonymous"
+		referrerpolicy="no-referrer"
+	/>
+	<div class="left-nav">
+		<% if(!isLogin){ %>
+		<div class="logo" id="logo">
+			<img src="../../public/img/auth/favico.svg" alt="logo" />
+			<h1>WorkPlace</h1>
+		</div>
+		<% } %> <% if(isLogin){ %>
+		<div class="logo" id="logo">
+			<img
+				src="../../public/img/auth/favico.svg"
+				alt="logo"
+				class="logo-img"
+			/>
+			<h1 class="logo-title">WorkPlace</h1>
+		</div>
+		<div class="link">
+			<a href="/<%- user.username %>/boards">
+				Các Không gian làm việc
+				<i class="fas fa-caret-down"></i>
+			</a>
+		</div>
+		<div class="link">
+			<a href="/api/table/admin">
+				Gần đây
+				<i class="fas fa-caret-down"></i>
+			</a>
+		</div>
+		<div class="link">
+			<a href="/api/table/admin">
+				Đã được đánh dấu sao
+				<i class="fas fa-caret-down"></i>
+			</a>
+		</div>
+		<div class="link">
+			<a href="/api/table/admin">
+				Mẫu
+				<i class="fas fa-caret-down"></i>
+			</a>
+		</div>
+		<div class="link link-new" id="toogle-model">
+			<a> Tạo mới </a>
+		</div>
+		<%} %>
+	</div>
+	<div class="right-nav">
+		<% if(isLogin) { %>
+		<div class="search">
+			<input type="text" placeholder="Tìm kiếm..." />
+			<i class="fas fa-search"></i>
+		</div>
+		<i class="fas fa-info-circle"></i>
+		<i class="far fa-bell"></i>
+		<div class="avatar" id="avatar">
+			<%
+				if(user.avatar) { %>
+					<img
+					src="/file/<%=user.avatar%>"
+					alt="avartar"
+				/>
+			<%	} else { %>
+				<img
+					src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+					alt="avartar"
+				/>
+			<%	}
+			%>
+
+		</div>
+		<% } else { %>
+		<a href="/api/auth/login">Đăng Nhập</a>
+		<a href="/api/auth/register">Đăng ký</a>
+		<% } %>
+	</div>
+</div>
+
+<% if(isLogin) {%>
+<div class="setting-user" id="setting-user">
+	<p>Account</p>
+	<div class="account">
+		<div class="avatar">
+			<%
+				if(user.avatar){ %>
+					<img
+						src="/file/<%=user.avatar%>"
+						alt="avatar"
+					/>
+			<%	} else { %>
+				<img
+					src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+					alt="avatar"
+				/>
+			<% } %>
+
+		</div>
+		<div class="infor">
+			<h5><%- user.username %></h5>
+			<p><%- user.email %></p>
+		</div>
+    </div>
+	<div class="option-setting">
+		<a href="/api/user/profile">Hồ sơ và hiển thị</a>
+	</div>
+	<div class="option-setting">
+		<a href="">Hoạt động</a>
+	</div>
+	<div class="option-setting">
+		<a href="">Thẻ</a>
+	</div>
+	<div class="option-setting">
+		<a href="">Cài đặt</a>
+	</div>
+	<hr/>
+	<div class="option-setting">
+		<a href="">Phím tắt</a>
+	</div>
+	<div class="option-setting">
+		<a href="">Trợ giúp</a>
+	</div>
+	<hr/>
+	<a href="/api/auth/logout">Đăng xuất</a>
+</div>
+<% } %>
+
+
+<% if(isLogin) {%> 
+
+	<div class="model-create-new" id="model-create-new">
+		<h5>Tạo bảng mới</h5>
+		<form action="/api/table/create" method="post">
+			<input name="email" placeholder="Nhập tên bảng..."></input>
+			<div class="description">
+				<p>Một bảng được tạo thành từ các thẻ được sắp xếp trong danh sách.Sử dụng bảng để quản lí dự án, theo dõi thông tin, hoặc tổ chức bất kì sự việc gì</p>
+			</div>
+			<button class="add-item" type="submit">+ Add</button>
+		</form>
+		<button id="close-model-create"><i class="fas fa-times "></i></button>
+	</div>
+
+<% } %> 
+<script type="text/javascript" src="../../public/js/index.js"></script>
+</div>
